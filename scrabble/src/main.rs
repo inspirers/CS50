@@ -121,14 +121,37 @@ fn compute_winner(score1: u8, score2: u8) {
         println!("Tie. Person 1 points equals person two points {}", score1);
     }
 }
+
+fn compute(v: Vec<char>, arr: &[u8], small_letters: &[u8], capital_letters: &[u8]) -> bool{
+    let mut i:usize = 0;
+    let mut k: usize = 0;
+    while k < v.len()-1{
+    if v[i].is_uppercase(){
+
+    }
+    if v[i].is_lowercase(){
+
+    }
+    else {
+
+    }
+}
+    return v[i].is_uppercase();
+}
+
 fn main() {
     let arr: [u8; 26] = [
         1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10,
     ];
+    let small_letters: [u8; 26] = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122,];
+
+// Ascii Values for capital letters of alphabets
+let capital_letters: [u8; 26] = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,];
 
     let v1: Vec<char> = input(1);
     let v2: Vec<char> = input(2);
     let score1 = compute_score(v1, &arr);
     let score2 = compute_score(v2, &arr);
     compute_winner(score1, score2);
+    
 }
