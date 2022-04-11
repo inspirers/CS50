@@ -80,4 +80,5 @@ fn main() {
     let score1 = compute(v1, &points, &small_letters, &capital_letters);
     let score2 = compute(v2, &points, &small_letters, &capital_letters);
     compute_winner(score1, score2);
+    return;
 }
