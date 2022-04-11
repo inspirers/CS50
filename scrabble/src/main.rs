@@ -14,96 +14,6 @@ fn input(n: u8) -> Vec<char> {
     return chars;
 }
 
-fn compute_score(v: Vec<char>, arr: &[u8]) -> u8 {
-    let mut i: usize = 0;
-    let mut score: u8 = 0;
-    let k: usize = v.len() - 1;
-    while i < k {
-        match v[i] {
-            'A' | 'a' => {
-                score += arr[0];
-            }
-            'B' | 'b' => {
-                score += arr[1];
-            }
-            'C' | 'c' => {
-                score += arr[2];
-            }
-            'D' | 'd' => {
-                score += arr[3];
-            }
-            'E' | 'e' => {
-                score += arr[4];
-            }
-            'F' | 'f' => {
-                score += arr[5];
-            }
-            'G' | 'g' => {
-                score += arr[6];
-            }
-            'H' | 'h' => {
-                score += arr[7];
-            }
-            'I' | 'i' => {
-                score += arr[8];
-            }
-            'J' | 'j' => {
-                score += arr[9];
-            }
-            'K' | 'k' => {
-                score += arr[10];
-            }
-            'L' | 'l' => {
-                score += arr[11];
-            }
-            'M' | 'm' => {
-                score += arr[12];
-            }
-            'N' | 'n' => {
-                score += arr[13];
-            }
-            'O' | 'o' => {
-                score += arr[14];
-            }
-            'P' | 'p' => {
-                score += arr[15];
-            }
-            'Q' | 'q' => {
-                score += arr[16];
-            }
-            'R' | 'r' => {
-                score += arr[17];
-            }
-            'S' | 's' => {
-                score += arr[18];
-            }
-            'T' | 't' => {
-                score += arr[19];
-            }
-            'U' | 'u' => {
-                score += arr[20];
-            }
-            'V' | 'v' => {
-                score += arr[21];
-            }
-            'W' | 'w' => {
-                score += arr[22];
-            }
-            'X' | 'x' => {
-                score += arr[23];
-            }
-            'Y' | 'y' => {
-                score += arr[24];
-            }
-            'Z' | 'z' => {
-                score += arr[25];
-            }
-            _ => score += 0,
-        }
-        i += 1;
-    }
-    return score;
-}
 fn compute_winner(score1: u8, score2: u8) {
     if score1 > score2 {
         println!(
@@ -122,36 +32,52 @@ fn compute_winner(score1: u8, score2: u8) {
     }
 }
 
-fn compute(v: Vec<char>, arr: &[u8], small_letters: &[u8], capital_letters: &[u8]) -> bool{
-    let mut i:usize = 0;
-    let mut k: usize = 0;
-    while k < v.len()-1{
-    if v[i].is_uppercase(){
-
+fn compute(v: Vec<char>, points: &[u8], small_letters: &[char], capital_letters: &[char]) -> u8 {
+    //let mut i: usize = 0;
+    // let mut k: usize = 0;
+    let mut score = 0;
+    for n in 0..=v.len() - 1 {
+        //while k < v.len() - 1 {
+        if v[n].is_uppercase() {
+            for k in 0..=25 {
+                if v[n] == capital_letters[k] {
+                    score += points[k];
+                    break;
+                }
+            }
+        }
+        else if v[n].is_lowercase() {
+            for k in 0..=25 {
+                if v[n] == small_letters[k] {
+                    score += points[k];
+                    break;
+                }
+            }
+        } 
+        else {
+        }
     }
-    if v[i].is_lowercase(){
-
-    }
-    else {
-
-    }
-}
-    return v[i].is_uppercase();
+    return score;
 }
 
 fn main() {
-    let arr: [u8; 26] = [
+    let points: [u8; 26] = [
         1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10,
     ];
-    let small_letters: [u8; 26] = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122,];
+    let small_letters: [char; 26] = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+        's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    ];
 
-// Ascii Values for capital letters of alphabets
-let capital_letters: [u8; 26] = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90,];
+    // Ascii Values for capital letters of alphabets
+    let capital_letters: [char; 26] = [
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+        'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    ];
 
     let v1: Vec<char> = input(1);
     let v2: Vec<char> = input(2);
-    let score1 = compute_score(v1, &arr);
-    let score2 = compute_score(v2, &arr);
+    let score1 = compute(v1, &points, &small_letters, &capital_letters);
+    let score2 = compute(v2, &points, &small_letters, &capital_letters);
     compute_winner(score1, score2);
-    
 }
