@@ -14,7 +14,7 @@ fn input(n: u8) -> Vec<char> {
     return chars;
 }
 
-fn compute_winner(score1: u8, score2: u8) {
+fn compute_winner(score1: u16, score2: u16) {
     if score1 > score2 {
         println!(
             "Person 1 won with {} points against person 2 with {} points.",
@@ -32,7 +32,7 @@ fn compute_winner(score1: u8, score2: u8) {
     }
 }
 
-fn compute(v: Vec<char>, points: &[u8], small_letters: &[char], capital_letters: &[char]) -> u8 {
+fn compute(v: Vec<char>, points: &[u16], small_letters: &[char], capital_letters: &[char]) -> u16 {
     //let mut i: usize = 0;
     // let mut k: usize = 0;
     let mut score = 0;
@@ -61,7 +61,7 @@ fn compute(v: Vec<char>, points: &[u8], small_letters: &[char], capital_letters:
 }
 
 fn main() {
-    let points: [u8; 26] = [
+    let points: [u16; 26] = [
         1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10,
     ];
     let small_letters: [char; 26] = [
